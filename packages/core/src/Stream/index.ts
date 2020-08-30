@@ -1645,6 +1645,28 @@ export const accessM = <A, S, R, E, B>(f: (a: A) => Stream<S, R, E, B>) =>
 export const access = <A, B>(f: (a: A) => B) =>
   pipe(encaseEffect(T.accessEnvironment<A>()), map(f))
 
+export function useProvider_<S, R, E, A, S2, R2, E2, A2>(
+  provider: T.Provider<R2, A2, E2, S2>,
+  ma: Stream<S, R & A2, E, A>
+): Stream<S | S2, R2 & R, E | E2, A> {
+  return pipe(ma, useProvider(provider))
+}
+
+export function useProvider<S2, R2, E2, A2>(provider: T.Provider<R2, A2, E2, S2>) {
+  return <S, R, E, A>(ma: Stream<S, R & A2, E, A>) =>
+    pipe(
+      fromS(ma),
+      M.chain((f) =>
+        M.access(
+          (r: R & A2): Fold<S, unknown, E, A> => (i, c, s) =>
+            T.provideAll(r)(f(i, c, s))
+        )
+      ),
+      M.useProvider(provider),
+      toS
+    )
+}
+
 export function subject<S, R, E, A>(_: Stream<S, R, E, A>) {
   const listeners: Map<any, (_: Ops<E, A>) => void> = new Map()
 
