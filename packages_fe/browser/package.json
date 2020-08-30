@@ -1,6 +1,6 @@
 {
   "name": "@matechs/browser",
-  "version": "7.11.8",
+  "version": "7.12.0",
   "license": "MIT",
   "private": false,
   "repository": "https://github.com/mikearnaldi/matechs-effect.git",
@@ -21,10 +21,10 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "@matechs/test-jest": "^4.11.8"
+    "@matechs/test-jest": "^4.12.0"
   },
   "dependencies": {
-    "@matechs/core": "^2.11.8"
+    "@matechs/core": "^2.12.0"
   },
   "config": {
     "modules": [
