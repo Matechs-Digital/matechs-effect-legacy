@@ -13,7 +13,7 @@ export interface Todo {
   completed: boolean
 }
 
-export interface PlaceholderJson extends F.ModuleShape<PlaceholderJson> {
+export interface PlaceholderJson {
   [PlaceholderJsonURI]: {
     getTodo: (n: number) => T.AsyncE<string, O.Option<Todo>>
   }
