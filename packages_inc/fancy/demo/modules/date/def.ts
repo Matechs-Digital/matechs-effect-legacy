@@ -6,7 +6,7 @@ import * as F from "@matechs/core/Service"
 
 export const dateOpsURI = Symbol()
 
-export interface DateOps extends F.ModuleShape<DateOps> {
+export interface DateOps {
   [dateOpsURI]: {
     updateDate: T.Sync<Date>
     accessDate: T.Sync<Date>

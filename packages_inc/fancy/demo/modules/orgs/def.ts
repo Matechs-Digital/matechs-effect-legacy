@@ -7,7 +7,7 @@ import * as F from "@matechs/core/Service"
 
 export const orgsOpsURI = Symbol()
 
-export interface OrgsOps extends F.ModuleShape<OrgsOps> {
+export interface OrgsOps {
   [orgsOpsURI]: {
     updateOrgs: T.Async<O.Option<string>>
   }
