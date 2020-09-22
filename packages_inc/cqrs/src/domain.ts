@@ -8,7 +8,7 @@ import { Read } from "./read"
 
 import * as T from "@matechs/core/Effect"
 import * as NEA from "@matechs/core/NonEmptyArray"
-import { InterpreterURI } from "@matechs/morphic/batteries/usage/interpreter-result"
+import { InterpreterURI } from "@matechs/morphic/batteries/interpreter"
 import { ProgramURI } from "@matechs/morphic/batteries/usage/program-type"
 import { MorphADT, AOfMorhpADT } from "@matechs/morphic/batteries/usage/tagged-union"
 import { dbT } from "@matechs/orm"

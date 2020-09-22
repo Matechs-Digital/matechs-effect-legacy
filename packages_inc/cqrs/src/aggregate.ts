@@ -1,9 +1,5 @@
-import {} from "@matechs/morphic/batteries/interpreter"
-import {} from "@matechs/morphic/model/interpreter"
-import {} from "@matechs/morphic/batteries/summoner"
-
 import { ReadSideConfig } from "./config"
-import { SliceFetcher, AggregateFetcher } from "./fetchSlice"
+import { AggregateFetcher, SliceFetcher } from "./fetchSlice"
 import { matcher } from "./matcher"
 import { MatcherT } from "./matchers"
 import { persistEvent } from "./persistEvent"
@@ -15,13 +11,15 @@ import { pipe } from "@matechs/core/Function"
 import * as NEA from "@matechs/core/NonEmptyArray"
 import { Of } from "@matechs/morphic/adt/ctors"
 import { ElemType } from "@matechs/morphic/adt/utils"
-import { InterpreterURI } from "@matechs/morphic/batteries/usage/interpreter-result"
+import { InterpreterURI } from "@matechs/morphic/batteries/interpreter"
+import {} from "@matechs/morphic/batteries/summoner"
 import { ProgramURI } from "@matechs/morphic/batteries/usage/program-type"
 import {
-  MorphADT,
+  AOfMorhpADT,
   AOfTypes,
-  AOfMorhpADT
+  MorphADT
 } from "@matechs/morphic/batteries/usage/tagged-union"
+import {} from "@matechs/morphic/model/interpreter"
 import { DbT, DbTx, ORM, TaskError } from "@matechs/orm"
 
 // experimental alpha

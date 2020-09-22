@@ -12,7 +12,7 @@ export interface ReadSideConfig {
   delay: number
 }
 
-export interface ReadSideConfigService extends F.ModuleShape<ReadSideConfigService> {
+export interface ReadSideConfigService {
   [readSideURI]: {
     accessConfig: T.Async<ReadSideConfig>
   }
