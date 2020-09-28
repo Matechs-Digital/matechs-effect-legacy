@@ -195,13 +195,8 @@ export interface ForeachWithKeysF<F, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = 
   >
 }
 
-export interface TraversableWithKeysF<
-  F,
-  Fix0 = any,
-  Fix1 = any,
-  Fix2 = any,
-  Fix3 = any
-> extends CovariantF<F, Fix0, Fix1, Fix2, Fix3> {
+export interface TraversableWithKeysF<F, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = any>
+  extends CovariantF<F, Fix0, Fix1, Fix2, Fix3> {
   readonly foreachWithKeysF: ForeachWithKeysF<F, Fix0, Fix1, Fix2, Fix3>
 }
 

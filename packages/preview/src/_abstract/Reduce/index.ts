@@ -14,13 +14,8 @@ export interface ReduceF<F, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = any>
   ) => B
 }
 
-export interface ReduceK<
-  F extends URIS,
-  Fix0 = any,
-  Fix1 = any,
-  Fix2 = any,
-  Fix3 = any
-> extends HasURI<F, Fix0, Fix1, Fix2, Fix3> {
+export interface ReduceK<F extends URIS, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = any>
+  extends HasURI<F, Fix0, Fix1, Fix2, Fix3> {
   readonly reduce: <A, B>(
     b: B,
     f: (b: B, a: A) => B

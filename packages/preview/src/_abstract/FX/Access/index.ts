@@ -12,13 +12,8 @@ export interface AccessF<F, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = any>
   ) => HKTFix<F, Fix0, Fix1, Fix2, Fix3, K, NK, I, O, X, In, St, unknown, Err, A>
 }
 
-export interface AccessK<
-  F extends URIS,
-  Fix0 = any,
-  Fix1 = any,
-  Fix2 = any,
-  Fix3 = any
-> extends HasURI<F, Fix0, Fix1, Fix2, Fix3> {
+export interface AccessK<F extends URIS, Fix0 = any, Fix1 = any, Fix2 = any, Fix3 = any>
+  extends HasURI<F, Fix0, Fix1, Fix2, Fix3> {
   readonly access: <R, A, In, I = In, O = In, S = In>(
     f: (r: R) => A
   ) => KindFix<F, Fix0, Fix1, Fix2, Fix3, never, never, I, O, never, In, S, R, never, A>
