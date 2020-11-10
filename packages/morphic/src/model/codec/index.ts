@@ -520,6 +520,9 @@ export const partial = <P extends Props>(
       for (let i = 0; i < len; i++) {
         const k = keys[i]
         const ak = a[k]
+        if (typeof ak === "undefined") {
+          continue
+        }
         const type = props[k]
         const result = type.validate(ak, appendContext(c, k, type, ak))
         if (E.isLeft(result)) {
