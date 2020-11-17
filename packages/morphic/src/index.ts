@@ -1,4 +1,4 @@
-import type { AlgebraNoUnion } from "./batteries/program"
+import type { CoreAlgebra } from "./batteries/program"
 import { opaque, opaque_, summonFor } from "./batteries/summoner"
 import type { M, M_ } from "./batteries/summoner"
 import { Codec } from "./model"
@@ -87,7 +87,7 @@ export function customCodec<G, Env, E, A>(T: HKT2<G, Env, E, A>) {
         model: Codec<A, E>
       }
     ) => Codec<A, E2>
-  ) => (F: AlgebraNoUnion<G, Env>) =>
+  ) => (F: CoreAlgebra<G, Env>) =>
     F.unknownE(T, {
       conf: {
         [ModelURI]: (a, b, c) => f(a as Codec<A, E>, b as any, c)

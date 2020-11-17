@@ -9,6 +9,7 @@ import { eqRefinedInterpreter } from "./refined"
 import { eqSetInterpreter } from "./set"
 import { eqStrMapInterpreter } from "./str-map"
 import { eqTaggedUnionInterpreter } from "./tagged-union"
+import { eqUnionInterpreter } from "./union"
 import { eqUnknownInterpreter } from "./unknown"
 
 import type { AnyEnv } from "@matechs/morphic-alg/config"
@@ -22,6 +23,7 @@ export const allModelEq = <Env extends AnyEnv>() =>
     eqIntersectionInterpreter<Env>(),
     eqObjectInterpreter<Env>(),
     eqTaggedUnionInterpreter<Env>(),
+    eqUnionInterpreter<Env>(),
     eqRecursiveInterpreter<Env>(),
     eqStrMapInterpreter<Env>(),
     eqSetInterpreter<Env>()
