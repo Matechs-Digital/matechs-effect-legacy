@@ -9,6 +9,7 @@ import { Predicate, Refinement, identity, introduce } from "@matechs/core/Functi
 import type { Iso } from "@matechs/core/Monocle/Iso"
 import type { Prism } from "@matechs/core/Monocle/Prism"
 import * as NEA from "@matechs/core/NonEmptyArray"
+import { Option } from "@matechs/core/Option"
 import * as O from "@matechs/core/Option"
 import type { Ord } from "@matechs/core/Ord"
 import * as S from "@matechs/core/Set"
@@ -753,7 +754,12 @@ const getUnionName = <CS extends [Any, Any, ...Array<Any>]>(codecs: CS): string 
 
 export const union = <CS extends [Any, Any, ...Array<Any>]>(
   codecs: CS,
-  name: string = getUnionName(codecs)
+  name: string = getUnionName(codecs),
+  guards?: {
+    [k in keyof CS]: (
+      _: TypeOf<CS[number]>
+    ) => Option<CS[k] extends Any ? TypeOf<CS[k]> : never>
+  }
 ): UnionC<CS> => {
   const index = getIndex(codecs)
   if (index !== undefined && codecs.length > 0) {
@@ -796,7 +802,38 @@ export const union = <CS extends [Any, Any, ...Array<Any>]>(
       tag
     )
   } else {
-    throw new Error("Union only supports Tagged Unions")
+    return new UnionType(
+      name,
+      (u, c) => {
+        const errors: Errors = []
+        for (let i = 0; i < codecs.length; i++) {
+          const codec = codecs[i]
+          const result = codec.validate(u, appendContext(c, String(i), codec, u))
+          if (E.isLeft(result)) {
+            pushAll(errors, result.left)
+          } else {
+            return success(result.right)
+          }
+        }
+        return failures(errors)
+      },
+      useIdentity(codecs)
+        ? identity
+        : (a) => {
+            if (!guards) {
+              throw new Error(`Encoding Untagged Union "${name}" requires guards`)
+            }
+
+            for (const i in guards) {
+              if (guards[i](a)._tag === "Some") {
+                return codecs[i].encode(a)
+              }
+            }
+            // https://github.com/gcanti/io-ts/pull/305
+            throw new Error(`no codec found to encode value in union type ${name}`)
+          },
+      codecs
+    )
   }
 }
 

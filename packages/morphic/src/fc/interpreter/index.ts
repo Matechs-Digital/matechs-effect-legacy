@@ -9,6 +9,7 @@ import { fcRefinedInterpreter } from "./refined"
 import { fcSetInterpreter } from "./set"
 import { fcStrMapInterpreter } from "./str-map"
 import { fcTaggedUnionInterpreter } from "./tagged-union"
+import { fcUnionInterpreter } from "./union"
 import { fcUnknownInterpreter } from "./unknown"
 
 import type { AnyEnv } from "@matechs/morphic-alg/config"
@@ -22,6 +23,7 @@ export const allModelFC = <Env extends AnyEnv>() =>
     fcIntersectionInterpreter<Env>(),
     fcObjectInterpreter<Env>(),
     fcTaggedUnionInterpreter<Env>(),
+    fcUnionInterpreter<Env>(),
     fcRecursiveInterpreter<Env>(),
     fcStrMapInterpreter<Env>(),
     fcSetInterpreter<Env>()

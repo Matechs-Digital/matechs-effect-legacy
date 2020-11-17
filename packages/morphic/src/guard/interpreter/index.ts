@@ -9,6 +9,7 @@ import { guardRefinedInterpreter } from "./refined"
 import { guardSetInterpreter } from "./set"
 import { guardStrMapInterpreter } from "./str-map"
 import { guardTaggedUnionInterpreter } from "./tagged-union"
+import { guardUnionInterpreter } from "./union"
 import { guardUnknownInterpreter } from "./unknown"
 
 import type { AnyEnv } from "@matechs/morphic-alg/config"
@@ -22,6 +23,7 @@ export const allModelGuard = <Env extends AnyEnv>() =>
     guardIntersectionInterpreter<Env>(),
     guardObjectInterpreter<Env>(),
     guardTaggedUnionInterpreter<Env>(),
+    guardUnionInterpreter<Env>(),
     guardRecursiveInterpreter<Env>(),
     guardStrMapInterpreter<Env>(),
     guardSetInterpreter<Env>()

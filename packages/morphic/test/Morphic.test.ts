@@ -357,6 +357,16 @@ const WithF = M.make((F) =>
   })
 )
 
+const CustomUnion = make((F) =>
+  F.union(
+    F.string(),
+    F.number()
+  )([
+    (_) => (typeof _ === "string" ? O.some(_) : O.none),
+    (_) => (typeof _ === "number" ? O.some(_) : O.none)
+  ])
+)
+
 describe("Morphic", () => {
   it("withF", () => {
     const withF = WithF.build({
@@ -693,6 +703,23 @@ describe("Morphic", () => {
     expect(pipe(result, E.map(ShowPersonA.show))).toStrictEqual(
       E.right(
         'prefix:[{ name: ("Michael"), address: <AddressArray>([~Address~("177 Finchley Road")]) }, { name: ("John"), address: <AddressArray>([~Address~("178 Finchley Road")]) }]'
+      )
+    )
+  })
+
+  it("non tagged unions", () => {
+    pipe(CustomUnion.decode("ok"), E.mapLeft(M.reportFailure), (x) =>
+      expect(x).toEqual(E.right("ok"))
+    )
+    pipe(CustomUnion.decode(1), E.mapLeft(M.reportFailure), (x) =>
+      expect(x).toEqual(E.right(1))
+    )
+    pipe(CustomUnion.decode(null), E.mapLeft(M.reportFailure), (x) =>
+      expect(x).toEqual(
+        E.left([
+          "Invalid value null supplied to : (string | number)/0: string",
+          "Invalid value null supplied to : (string | number)/1: number"
+        ])
       )
     )
   })

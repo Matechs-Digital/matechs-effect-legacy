@@ -9,6 +9,7 @@ import { showRefinedInterpreter } from "./refined"
 import { showSetInterpreter } from "./set"
 import { showStrMapInterpreter } from "./str-map"
 import { showTaggedUnionInterpreter } from "./tagged-union"
+import { showUnionInterpreter } from "./union"
 import { showUnknownInterpreter } from "./unknown"
 
 import type { AnyEnv } from "@matechs/morphic-alg/config"
@@ -22,6 +23,7 @@ export const allModelShow = <Env extends AnyEnv>() =>
     showIntersectionInterpreter<Env>(),
     showObjectInterpreter<Env>(),
     showTaggedUnionInterpreter<Env>(),
+    showUnionInterpreter<Env>(),
     showRecursiveInterpreter<Env>(),
     showSetInterpreter<Env>(),
     showStrMapInterpreter<Env>()

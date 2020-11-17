@@ -10,6 +10,7 @@ import type { RefinedURI } from "@matechs/morphic-alg/refined"
 import type { SetURI } from "@matechs/morphic-alg/set"
 import type { StrMapURI } from "@matechs/morphic-alg/str-map"
 import type { TaggedUnionsURI } from "@matechs/morphic-alg/tagged-union"
+import type { UnionURI } from "@matechs/morphic-alg/union"
 import type { UnknownURI } from "@matechs/morphic-alg/unknown"
 import type { GetAlgebra } from "@matechs/morphic-alg/utils/core"
 
@@ -17,7 +18,7 @@ export const ProgramURI = "@matechs/morphic/ProgramURI" as const
 
 export type ProgramURI = typeof ProgramURI
 
-export interface AlgebraNoUnion<F, Env> extends InferredAlgebra<F, ProgramURI, Env> {}
+export interface CoreAlgebra<F, Env> extends InferredAlgebra<F, ProgramURI, Env> {}
 
 export interface P<R extends AnyConfigEnv, E, A>
   extends InferredProgram<R, E, A, ProgramURI> {}
@@ -32,6 +33,7 @@ declare module "../usage/program-type" {
       | SetURI
       | StrMapURI
       | TaggedUnionsURI
+      | UnionURI
       | UnknownURI
       | NewtypeURI
       | RefinedURI
@@ -39,7 +41,7 @@ declare module "../usage/program-type" {
   }
 
   interface ProgramAlgebra<F, Env> {
-    [ProgramURI]: AlgebraNoUnion<F, Env>
+    [ProgramURI]: CoreAlgebra<F, Env>
   }
 
   interface ProgramType<R extends AnyConfigEnv, E, A> {

@@ -13,6 +13,7 @@ import { modelRefinedInterpreter } from "./refined"
 import { modelSetInterpreter } from "./set"
 import { modelStrMapInterpreter } from "./str-map"
 import { modelTaggedUnionInterpreter } from "./tagged-unions"
+import { modelUnionInterpreter } from "./union"
 import { modelUnknownInterpreter } from "./unknown"
 
 import type { AnyEnv } from "@matechs/morphic-alg/config"
@@ -25,6 +26,7 @@ export const allModelBase = <Env extends AnyEnv>() =>
     modelPrimitiveInterpreter<Env>(),
     modelIntersectionInterpreter<Env>(),
     modelTaggedUnionInterpreter<Env>(),
+    modelUnionInterpreter<Env>(),
     modelStrMapInterpreter<Env>(),
     modelSetInterpreter<Env>(),
     modelRecursiveInterpreter<Env>()

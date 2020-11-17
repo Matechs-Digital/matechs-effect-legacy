@@ -38,6 +38,7 @@
       "set",
       "str-map",
       "tagged-union",
+      "union",
       "unknown",
       "config",
       "utils",
