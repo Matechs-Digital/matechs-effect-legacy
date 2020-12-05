@@ -129,3 +129,11 @@ declare module "@matechs/morphic-alg/tagged-union" {
     }
   }
 }
+
+declare module "@matechs/morphic-alg/union" {
+  interface UnionConfig<Types> {
+    [EqURI]: {
+      equals: TaggedUnionA<Types, E.URI>
+    }
+  }
+}

@@ -120,3 +120,11 @@ declare module "@matechs/morphic-alg/tagged-union" {
     }
   }
 }
+
+declare module "@matechs/morphic-alg/union" {
+  interface UnionConfig<Types> {
+    [ShowURI]: {
+      shows: TaggedUnionA<Types, S.URI>
+    }
+  }
+}

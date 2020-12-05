@@ -132,6 +132,14 @@ declare module "@matechs/morphic-alg/tagged-union" {
   }
 }
 
+declare module "@matechs/morphic-alg/union" {
+  interface UnionConfig<Types> {
+    [FastCheckURI]: {
+      arbs: TaggedUnionA<Types, FastCheckURI>
+    }
+  }
+}
+
 declare module "@matechs/morphic-alg/unknown" {
   interface UnknownConfig {
     [FastCheckURI]: {

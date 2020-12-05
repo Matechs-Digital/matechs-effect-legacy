@@ -14,7 +14,9 @@ export const fcUnionInterpreter = memo(
         pipe(
           types.map((getArb) => getArb(env).arb),
           (arbs) =>
-            fcApplyConfig(config?.conf)(accessFC(env).oneof(...arbs), env, { arbs })
+            fcApplyConfig(config?.conf)(accessFC(env).oneof(...arbs), env, {
+              arbs: arbs as any
+            })
         )
       )
   })
