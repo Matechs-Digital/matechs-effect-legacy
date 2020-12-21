@@ -126,3 +126,11 @@ declare module "@matechs/morphic-alg/tagged-union" {
     }
   }
 }
+
+declare module "@matechs/morphic-alg/union" {
+  interface UnionConfig<Types> {
+    [GuardURI]: {
+      guards: TaggedUnionA<Types, GuardURI>
+    }
+  }
+}

@@ -357,14 +357,19 @@ const WithF = M.make((F) =>
   })
 )
 
-const CustomUnion = make((F) =>
-  F.union(
-    F.string(),
-    F.number()
-  )([
-    (_) => (typeof _ === "string" ? O.some(_) : O.none),
-    (_) => (typeof _ === "number" ? O.some(_) : O.none)
-  ])
+const CustomUnion = M.make((F) =>
+  F.union(F.string(), F.number())(
+    [
+      (_) => (typeof _ === "string" ? O.some(_) : O.none),
+      (_) => (typeof _ === "number" ? O.some(_) : O.none)
+    ],
+    {
+      conf: {
+        [M.FastCheckURI]: (_, { module: fc }, c) => fc.oneof(...c.arbs),
+        [M.ModelURI]: (a, b, c) => a
+      }
+    }
+  )
 )
 
 describe("Morphic", () => {

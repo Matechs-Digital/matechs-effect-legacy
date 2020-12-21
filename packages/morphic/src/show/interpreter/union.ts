@@ -23,7 +23,7 @@ export const showUnionInterpreter = memo(
             }
           },
           env,
-          { shows }
+          { shows: shows as any }
         )
       )
     }

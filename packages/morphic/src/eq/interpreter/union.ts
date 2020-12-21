@@ -26,7 +26,7 @@ export const eqUnionInterpreter = memo(
             }
           },
           env,
-          { equals }
+          { equals: equals as any }
         )
       )
     }

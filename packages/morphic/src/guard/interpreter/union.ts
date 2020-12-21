@@ -23,7 +23,7 @@ export const guardUnionInterpreter = memo(
             }
           },
           env,
-          { guards }
+          { guards: guards as any }
         )
       )
     }

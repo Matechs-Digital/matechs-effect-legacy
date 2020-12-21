@@ -21,7 +21,7 @@ export const modelUnionInterpreter = memo(
                 ? withName(config?.name)(models[0])
                 : M.union(models as [Any, Any, ...Any[]], config?.name, _guards as any),
               env,
-              { models }
+              { models: models as any }
             )
           )
       )

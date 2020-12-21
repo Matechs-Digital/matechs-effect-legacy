@@ -122,3 +122,11 @@ declare module "@matechs/morphic-alg/tagged-union" {
     }
   }
 }
+
+declare module "@matechs/morphic-alg/union" {
+  interface UnionConfig<Types> {
+    [ModelURI]: {
+      models: TaggedUnionLA<Types, ModelURI>
+    }
+  }
+}
